@@ -10,9 +10,10 @@ const sendError = (res: Response, status: number, code: number, msg: string) =>
 export const notFound = (req: Request, res: Response) =>
     sendError(res, 404, 0, "Error: Not Found");
 
-// 421
+// 401
 export const unauthorized = (req: Request, res: Response) =>
-    sendError(res, 421, 1, "Error: Unauthorized");
+    sendError(res, 401, 1, "Error: Unauthorized");
 
+// 400
 export const badRequest = (req: Request, res: Response) =>
-    sendError(res, 403, 2, "Error: Bad Request");
+    sendError(res, 400, 2, "Error: Bad Request");
