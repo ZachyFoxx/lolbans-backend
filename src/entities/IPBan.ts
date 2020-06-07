@@ -1,23 +1,4 @@
-/**
- * CREATE TABLE IF NOT EXISTS IPBans"
-  +"(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
-  +"IPAddress varchar(49) NOT NULL,"
-  +"Reason TEXT NULL,"
-  +"ArbiterName varchar(17) NOT NULL,"
-  +"ArbiterUUID VARCHAR(36) NOT NULL,"
-  // Who un-punished (appealed their punishment) them
-  +"AppealReason TEXT NULL,"
-  // Who has reviewed and approved/denied the appeal.
-  +"AppelleeName VARCHAR(17) NULL,"
-  +"AppelleeUUID VARCHAR(36) NULL,"
-  +"AppealTime TIMESTAMP NULL,"
-  // this will just make checking if they're banned or not easier...
-  +"Appealed BOOLEAN DEFAULT FALSE,"
-  +"PunishID varchar(20) NOT NULL,"
-  +"TimeAdded TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
-  +"Expiry TIMESTAMP NULL"
-  +")
- */
+import "reflect-metadata";
 
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 

@@ -46,6 +46,10 @@ For production, a Dockerfile is provided for building an image of the API. The e
 
 ## Routes
 
+### GET /
+
+Utility route to check the API is alive - returns the current version ;3
+
 ### GET /punishments?page=1
 
 Return an array of all punishments, ordered by date of creation. Limited to 100 per request, support pagination.
@@ -91,7 +95,7 @@ Fetches punishment counts over a period of time, grouped by days.
         "bans": 69,
         "kicks": 420,
         "mutes": 621,
-        "warns": 926
+        "warns": 12
     }
 ]
 ```

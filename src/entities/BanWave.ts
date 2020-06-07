@@ -1,17 +1,4 @@
-/**
- * self.connection.prepareStatement("CREATE TABLE IF NOT EXISTS BanWave"
- +"(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
- +"UUID varchar(36) NOT NULL,"
- +"PlayerName varchar(17) NOT NULL,"
- +"IPAddress varchar(48) NOT NULL,"
- +"Reason TEXT NULL,"
- +"ArbiterName varchar(17) NOT NULL,"
- +"ArbiterUUID varchar(36) NOT NULL,"
- +"PunishID varchar(20) NOT NULL,"
- +"TimePunished TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,"
- +"Expiry TIMESTAMP NULL"
- +")").execute();
- */
+import "reflect-metadata";
 
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 

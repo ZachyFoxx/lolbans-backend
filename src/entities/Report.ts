@@ -1,19 +1,4 @@
-/**
- * CREATE TABLE IF NOT EXISTS Reports (
- * id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
- * PlaintiffUUID varchar(36) NOT NULL,
- * PlaintiffName varchar(17) NOT NULL,
- * DefendantUUID varchar(36) NOT NULL,
- * DefendantName varchar(17) NOT NULL,
- * Reason TEXT NOT NULL,
- * JudgeUUID varchar(36) NULL,
- * JudgeName varchar(17) NULL,
- * Type varchar(32) NOT NULL,
- * CloseReason TEXT NULL,
- * Closed boolean DEFAULT FALSE NOT NULL,
- * TimeAdded TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
- * PunishID varchar(20) NOT NULL
- */
+import "reflect-metadata";
 
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
