@@ -5,7 +5,7 @@ declare global {
 
             API_PORT: string;
             API_LOGLEVEL: string;
-            API_CACHE_LIFETIME: number;
+            API_CACHE_LIFETIME: string;
 
             TYPEORM_CONNECTION: string;
             TYPEORM_HOST: string;
