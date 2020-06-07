@@ -17,3 +17,7 @@ export const unauthorized = (req: Request, res: Response) =>
 // 400
 export const badRequest = (req: Request, res: Response) =>
     sendError(res, 400, 2, "Error: Bad Request");
+
+// 500
+export const serverError = (req: Request, res: Response) =>
+    sendError(res, 500, 3, "Error: Server-side Error");

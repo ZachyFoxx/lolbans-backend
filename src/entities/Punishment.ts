@@ -32,7 +32,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
  +")
  */
 
-enum PunishType {
+export enum PunishType {
     Ban,
     Mute,
     Kick,
@@ -58,7 +58,7 @@ export interface PunishmentData {
     AppealReason?: string;
     AppelleeName?: string;
     AppelleeUUID?: string;
-    AppelleeTime?: Date;
+    AppealTime?: Date;
     Appealed: boolean;
 
     WarningACK: boolean;
@@ -83,7 +83,7 @@ export class Punishment implements PunishmentData {
     @Column()
     Type: PunishType;
 
-    @Column({ type: "timestamp" })
+    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     TimePunished: Date;
     @Column({ type: "timestamp", nullable: true })
     Expiry?: Date;
@@ -100,7 +100,7 @@ export class Punishment implements PunishmentData {
     @Column({ length: 36, nullable: true })
     AppelleeUUID?: string;
     @Column({ type: "timestamp", nullable: true })
-    AppelleeTime?: Date;
+    AppealTime?: Date;
     @Column("bool", { default: false })
     Appealed: boolean;
 

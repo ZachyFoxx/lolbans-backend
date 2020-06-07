@@ -53,9 +53,9 @@ export class User implements UserData {
     @Column({ length: 3 })
     CountryCode: string;
 
-    @Column({ type: "timestamp" })
+    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     FirstLogin: Date;
-    @Column({ type: "timestamp" })
+    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     LastLogin: Date;
 
     @Column({ nullable: true })
