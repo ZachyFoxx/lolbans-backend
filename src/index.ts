@@ -1,7 +1,17 @@
-import { ApiServer } from "./ApiServer";
-import { VERSION } from "./utils/env";
+import dotenv from "dotenv";
 
-console.log(`\nlolbans-api v${VERSION}`);
+import { ApiServer } from "./ApiServer";
+import { NODE_ENV, VERSION } from "./utils/env";
+
+// If development, load .env
+if (NODE_ENV == "development") {
+    const res = dotenv.config();
+    if (res.error) {
+        throw res.error;
+    }
+}
+
+console.log(`\nlolbans-api v${VERSION} - NODE_ENV=${NODE_ENV}`);
 console.log("made with 💜 by skye\n");
 
 const server = new ApiServer();

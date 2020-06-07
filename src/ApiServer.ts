@@ -3,12 +3,16 @@ import cors from "cors";
 import express from "express";
 import { createServer, Server } from "http";
 import morgan from "morgan";
-import { Connection, createConnection } from "typeorm";
+import { Connection, createConnection, getConnectionOptions } from "typeorm";
 
 import { notFound } from "./errors";
 import { registerRoutes } from "./routes";
-import { createLogger } from "./utils/logging";
+import { API_PORT } from "./utils/env";
+import { createLogger, QueryLogger } from "./utils/logging";
 
+/**
+ * API server - wraps express and http, routing requests to where they should be~
+ */
 export class ApiServer {
     readonly logger = createLogger("lolbans");
     readonly app = express();
@@ -16,8 +20,13 @@ export class ApiServer {
     http: Server;
     connection: Connection;
 
+    private start = Date.now();
+
     constructor() {
-        this.logger.level = "debug";
+        this.logger.level = process.env.API_LOGLEVEL
+            ? process.env.API_LOGLEVEL
+            : "info";
+
         this.setupApp();
         this.setupHttpServer();
     }
@@ -27,10 +36,9 @@ export class ApiServer {
      */
     async listen() {
         this.app.use("*", notFound);
-
         await this.setupDatabase();
-
-        this.http.listen(3000);
+        this.http.listen(API_PORT);
+        this.logger.verbose(`Initialization took ${Date.now() - this.start}ms`);
     }
 
     /**
@@ -59,7 +67,9 @@ export class ApiServer {
      */
     setupHttpServer() {
         this.http = createServer(this.app)
-            .on("listening", () => this.logger.info("Listening on port 3000"))
+            .on("listening", () =>
+                this.logger.info(`Listening on port ${API_PORT}`)
+            )
             .on("error", (err) => this.logger.error(err));
     }
 
@@ -68,6 +78,11 @@ export class ApiServer {
      */
     async setupDatabase() {
         this.logger.debug("Connecting to database...");
-        this.connection = await createConnection();
+        this.connection = await getConnectionOptions().then((opts) => {
+            return createConnection({
+                ...opts,
+                logger: new QueryLogger("all"),
+            });
+        });
     }
 }
