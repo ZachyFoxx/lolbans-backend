@@ -78,11 +78,19 @@ export class ApiServer {
      */
     async setupDatabase() {
         this.logger.debug("Connecting to database...");
-        this.connection = await getConnectionOptions().then((opts) => {
-            return createConnection({
-                ...opts,
-                logger: new QueryLogger("all"),
+        try {
+            this.connection = await getConnectionOptions().then((opts) => {
+                return createConnection({
+                    ...opts,
+                    logger: new QueryLogger("all"),
+                });
             });
-        });
+        } catch (err) {
+            this.logger.error(err);
+            this.logger.error(
+                "Failed to connect to database - cannot finish initialization."
+            );
+            process.exit(1);
+        }
     }
 }

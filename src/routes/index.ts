@@ -6,5 +6,5 @@ export const registerRoutes = (server: ApiServer) => {
     const app = server.app;
 
     app.get("/", status);
-    app.get("/infractions", infractions(server));
+    app.use("/infractions", infractions(server));
 };
