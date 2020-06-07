@@ -76,8 +76,10 @@ Fetches punishment counts over a period of time, grouped by days.
 
 **Query Params**
 
--   `start` - The first dates to retrieve
--   `end` - The last date to retrieve
+-   `start` - The first dates to retrieve. **Default:** One week ago
+-   `end` - The last date to retrieve. **Default:** Now
+
+Both times are JavaScript timestamps (time since 1970 in milliseconds, or Unix timestamp \* 1000).
 
 **Example Response**
 
