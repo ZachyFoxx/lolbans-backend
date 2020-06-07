@@ -13,3 +13,6 @@ export const notFound = (req: Request, res: Response) =>
 // 421
 export const unauthorized = (req: Request, res: Response) =>
     sendError(res, 421, 1, "Error: Unauthorized");
+
+export const badRequest = (req: Request, res: Response) =>
+    sendError(res, 403, 2, "Error: Bad Request");

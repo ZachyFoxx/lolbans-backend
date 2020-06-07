@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 import { Request } from "express";
 import { Column, Entity, PrimaryColumn } from "typeorm";
 
@@ -5,7 +7,7 @@ type InfractionType = "warn" | "mute" | "tempmute" | "ban";
 
 export interface InfractionData {
     // add as required
-    id: string;
+    id: number;
     type: "warn" | "mute" | "tempmute" | "ban";
     user: string;
     moderator: string;
@@ -14,24 +16,35 @@ export interface InfractionData {
 
 @Entity()
 export class Infraction implements InfractionData {
-    constructor(
-        @PrimaryColumn()
-        public id: string,
-        @Column()
-        public type: InfractionType,
-        @Column()
-        public user: string,
-        @Column()
-        public moderator: string,
-        @Column()
-        public duration = -1
-    ) {}
+    @PrimaryColumn()
+    public id: number;
+    @Column()
+    public type: InfractionType;
+    @Column()
+    public user: string;
+    @Column()
+    public moderator: string;
+    @Column()
+    public duration: number;
 
+    constructor(
+        id: number,
+        type: InfractionType,
+        user: string,
+        moderator: string,
+        duration = -1
+    ) {
+        this.id = id;
+        this.type = type;
+        this.user = user;
+        this.moderator = moderator;
+        this.duration = duration;
+    }
     /**
      * Create a new infraction entitry from a post request.
      * @param req
      */
-    static fromPostRequest(req: Request) {
+    static fromPostRequest = (req: Request) => {
         if (req.method != "POST") {
             return;
         }
@@ -51,5 +64,5 @@ export class Infraction implements InfractionData {
             data.moderator,
             data.duration
         );
-    }
+    };
 }
