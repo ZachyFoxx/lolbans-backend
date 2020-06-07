@@ -86,7 +86,7 @@ export class ApiServer {
                 });
             });
 
-            this.logger.verbose("Synchronizing database...");
+            // this.logger.verbose("Synchronizing database...");
             // await this.connection.synchronize();
         } catch (err) {
             this.logger.error(err);

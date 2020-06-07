@@ -13,16 +13,18 @@ export const punishDetails = (server: ApiServer) => async (
     req: Request,
     res: Response
 ) => {
-    const PunishID = req.query.punishid;
+    const id = req.params.id;
 
-    if (!PunishID) {
+    if (!id) {
         return badRequest(req, res);
     }
 
-    const data = server.connection.getRepository(Punishment).findOne({
-        where: {
-            PunishID: Equal(PunishID),
-        },
+    const where = !isNaN(Number(id))
+        ? { id: Equal(Number(id)) }
+        : { PunishID: Equal(id) };
+
+    const data = await server.connection.getRepository(Punishment).findOne({
+        where,
     });
 
     return res.json(data || null);

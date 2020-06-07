@@ -1,15 +1,21 @@
 # Example Environment Setup
 
-API_PORT = 3000
-API_LOGLEVEL = "info"
+API_PORT=3000
+API_LOGLEVEL="info"
+# How long the statistics cache should last.
+API_CACHE_LIFETIME=5
 
 # Database Configuration
-TYPEORM_CONNECTION = mysql
-TYPEORM_HOST = localhost
-TYPEORM_USERNAME = root
-TYPEORM_PASSWORD = my-secret-pw
-TYPEORM_DATABASE = test
-TYPEORM_PORT = 3306
-TYPEORM_SYNCHRONIZE = true
-TYPEORM_LOGGING = true
-TYPEORM_ENTITIES = src/entities/*.ts
+TYPEORM_CONNECTION=mysql
+TYPEORM_HOST=localhost
+TYPEORM_USERNAME=root
+TYPEORM_PASSWORD=my-secret-pw
+TYPEORM_DATABASE=test
+TYPEORM_PORT=3306
+
+# Whether or not to synchronize the database - WARNING!! This has
+# potential side effects.
+TYPEORM_SYNCHRONIZE=true
+
+TYPEORM_LOGGING=true
+TYPEORM_ENTITIES=src/entities/*.ts

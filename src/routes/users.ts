@@ -9,11 +9,11 @@ import { badRequest } from "../errors";
  * Route for fetching user details by id.
  * @param server
  */
-export const userDetails = (server: ApiServer) => async (
+export const users = (server: ApiServer) => async (
     req: Request,
     res: Response
 ) => {
-    const uuid = req.query.uuid;
+    const uuid = req.params.uuid;
 
     if (!uuid) {
         return badRequest(req, res);

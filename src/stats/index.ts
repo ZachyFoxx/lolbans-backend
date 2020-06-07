@@ -1,4 +1,3 @@
-import * as _ from "lodash";
 import { Connection } from "typeorm";
 import { isUndefined } from "util";
 
@@ -72,7 +71,7 @@ let lastRetrieved = -1;
 /**
  * How long the cache should live for. Defaults to 5 minutes.
  */
-const lifetime = process.env.API_CACHE_LIFETIME || 5 * 60e3;
+const lifetime = (Number(process.env.API_CACHE_LIFETIME) || 5) * 60e3;
 
 /**
  * Compute statistics - THIS MIGHT BE VERY MEMORY INTENSIVE.

@@ -75,7 +75,9 @@ export class QueryLogger implements Logger {
                 (parameters && parameters.length
                     ? " -- PARAMETERS: " + this.stringifyParams(parameters)
                     : "");
-            this.logger.error(`query failed:`, PlatformTools.highlightSql(sql));
+            this.logger.error(
+                `query failed: ${PlatformTools.highlightSql(sql)}`
+            );
             this.logger.error(`error:`, error);
         }
     }
@@ -89,8 +91,8 @@ export class QueryLogger implements Logger {
             (parameters && parameters.length
                 ? " -- PARAMETERS: " + this.stringifyParams(parameters)
                 : "");
-        this.logger.warn(`query is slow:`, PlatformTools.highlightSql(sql));
-        this.logger.warn(`execution time:`, time);
+        this.logger.warn(`query is slow: ${PlatformTools.highlightSql(sql)}`);
+        this.logger.warn(`execution time: ${time}`);
     }
 
     /**
