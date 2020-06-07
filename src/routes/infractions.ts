@@ -1,15 +1,14 @@
 import { Request, Response, Router } from "express";
 
-import { ApiServer } from "../ApiServer";
-import { Infraction } from "../entities/Infraction";
-import { badRequest } from "../errors";
-
 /**
  * Infraction methds
  * @param server
  */
-export const infractions = (server: ApiServer) =>
+export const infractions = () =>
     Router().get("/", async (req: Request, res: Response) => {
+        return res.send("not implemented");
+
+        /**
         const repo = server.connection.getRepository(Infraction);
         const count = await repo.count();
 
@@ -36,4 +35,5 @@ export const infractions = (server: ApiServer) =>
             count,
             pages: Math.ceil(count / 50),
         });
+        */
     });
