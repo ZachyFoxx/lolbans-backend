@@ -1,6 +1,7 @@
 # Example Environment Setup
 
 API_PORT = 3000
+API_LOGLEVEL = "info"
 
 # Database Configuration
 TYPEORM_CONNECTION = mysql
@@ -11,4 +12,4 @@ TYPEORM_DATABASE = test
 TYPEORM_PORT = 3306
 TYPEORM_SYNCHRONIZE = true
 TYPEORM_LOGGING = true
-TYPEORM_ENTITIES = src/entity/*.ts
+TYPEORM_ENTITIES = src/entities/*.ts
