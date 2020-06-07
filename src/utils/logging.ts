@@ -1,5 +1,5 @@
-import { createLogger as winston, transports, format } from "winston";
 import chalk from "chalk";
+import { createLogger as winston, format, transports } from "winston";
 
 const { printf, combine, label, timestamp, colorize, simple } = format;
 
@@ -24,5 +24,3 @@ export const createLogger = (name: string) =>
             fmt
         ),
     });
-
-
