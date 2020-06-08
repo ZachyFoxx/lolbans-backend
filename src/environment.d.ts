@@ -1,10 +1,17 @@
 declare global {
     namespace NodeJS {
         interface ProcessEnv {
-            NODE_ENV: string;
+            NODE_ENV: "development" | "production";
 
             API_PORT: string;
-            API_LOGLEVEL: string;
+            API_LOGLEVEL:
+                | "silly"
+                | "debug"
+                | "verbose"
+                | "http"
+                | "info"
+                | "warn"
+                | "error";
             API_CACHE_LIFETIME: string;
 
             TYPEORM_CONNECTION: string;

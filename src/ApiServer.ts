@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
+import helmet from "helmet";
 import { createServer, Server } from "http";
 import morgan from "morgan";
 import { Connection, createConnection, getConnectionOptions } from "typeorm";
@@ -56,7 +57,13 @@ export class ApiServer {
                     },
                 })
             )
-            .use(bodyParser.json());
+            .use(bodyParser.json())
+
+        // Security middleware.
+        if (process.env.NODE_ENV == "production") {
+            this.logger.debug("Attaching security middleware...");
+            this.app.use(helmet());
+        }
 
         this.logger.debug("Setting up API routes...");
         registerRoutes(this);

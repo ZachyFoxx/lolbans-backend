@@ -30,6 +30,8 @@ TYPEORM_ENTITIES=src/entities/*.ts
 
 ## Running
 
+When running for production use, please make sure `NODE_ENV` is set to `production` - this attaches security middleware to the server which isn't attached otherwise.
+
 ### Development
 
 By default, the API will try to load variables stored in `.env`. It will fall back to process environment if this fails.
