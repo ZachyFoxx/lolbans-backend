@@ -1,5 +1,7 @@
 # LolBans-API
 
+![Master](https://github.com/NotZachery/LolBans-API/workflows/Master/badge.svg)
+
 TypeScript API backend for LolBans.
 
 ## Configuration
