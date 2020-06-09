@@ -58,9 +58,15 @@ Utility route to check the API is alive - returns the current version ;3
 
 Return an array of all punishments, ordered by date of creation. Limited to 100 per request, support pagination.
 
-**Query Params**
+#### Query Params\*\*
 
--   `page` - The page of infractions to retrieve. Will return error 401 if not a positive integer.
+-   `page` - The page of infractions to retrieve. Will return error 401 if not a positive integer. **Default:** 1
+-   `limit` - The maximum number of items to return. **Default:** 100
+-   `type` - The type of punishments to retrieve.
+    -   `0` - Ban
+    -   `1` - Kick
+    -   `2` - Mute
+    -   `3` - Warn
 
 ### GET /punishments/:id
 
@@ -70,22 +76,26 @@ Return the punishment with the specified ID. Supports both sequential numeric, a
 
 Return the details of the user with the given UUID.
 
+> Potential security ramifications?
+
 ### GET /statistics
 
 Returns detailed statistics concerning all punishments. **This endpoint is cached** - it will only update every 5 minutes (by default). This value can be changed in the environment configuration.
 
-## GET /statistics/timed
+### GET /statistics/timed
 
 Fetches punishment counts over a period of time, grouped by days.
 
-**Query Params**
+#### Query Params\*\*
 
 -   `start` - The first dates to retrieve. **Default:** One week ago
 -   `end` - The last date to retrieve. **Default:** Now
 
 Both times are JavaScript timestamps (time since 1970 in milliseconds, or Unix timestamp \* 1000).
 
-**Example Response**
+> To-do: Force endpoint to use beginning of the current day, regardless of input - allows for caching.
+
+#### Example Response
 
 ```json
 [
