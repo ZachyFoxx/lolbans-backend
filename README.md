@@ -54,15 +54,15 @@ For production, a Dockerfile is provided for building an image of the API. The e
 
 Utility route to check the API is alive - returns the current version ;3
 
-### GET /punishments?page=1
+### GET /punishments
 
 Return an array of all punishments, ordered by date of creation. Limited to 100 per request, support pagination.
 
-#### Query Params\*\*
+#### Query Params
 
--   `page` - The page of infractions to retrieve. Will return error 401 if not a positive integer. **Default:** 1
+-   `page` - The page of punishments to retrieve. Pages are 100 punishments in size when full. **Default:** 1
 -   `limit` - The maximum number of items to return. **Default:** 100
--   `type` - The type of punishments to retrieve.
+-   `type` - The type of punishments to retrieve. If not specified, the API will return all punishments.
     -   `0` - Ban
     -   `1` - Kick
     -   `2` - Mute
@@ -86,7 +86,7 @@ Returns detailed statistics concerning all punishments. **This endpoint is cache
 
 Fetches punishment counts over a period of time, grouped by days.
 
-#### Query Params\*\*
+#### Query Params
 
 -   `start` - The first dates to retrieve. **Default:** One week ago
 -   `end` - The last date to retrieve. **Default:** Now
