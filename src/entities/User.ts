@@ -39,7 +39,7 @@ export class User implements UserData {
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     FirstLogin: Date;
-    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+    @Column({ type: "timestamp", default: new Date(0) })
     LastLogin: Date;
 
     @Column({ nullable: true })

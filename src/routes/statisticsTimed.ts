@@ -23,7 +23,7 @@ export const statisticsTimed = (server: ApiServer) => async (
                   ? Date.now()
                   : Number(req.query.start)) / 1000
           )
-        : moment.default().subtract(7, "days");
+        : moment.default().subtract(6, "days");
 
     const end = req.query.end
         ? moment.default.unix(

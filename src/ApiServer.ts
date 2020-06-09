@@ -52,12 +52,11 @@ export class ApiServer {
             .use(
                 morgan("dev", {
                     stream: {
-                        write: (str) =>
-                            this.logger.verbose(str.replace("\n", "")),
+                        write: (str) => this.logger.http(str.replace("\n", "")),
                     },
                 })
             )
-            .use(bodyParser.json())
+            .use(bodyParser.json());
 
         // Security middleware.
         if (process.env.NODE_ENV == "production") {

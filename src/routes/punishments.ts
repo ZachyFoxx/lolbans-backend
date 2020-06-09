@@ -16,7 +16,7 @@ export const punishments = (server: ApiServer) =>
 
         let page = 0;
 
-        if (req.query.page) {
+        if (!isUndefined(req.query.page)) {
             if (!isPositiveInteger(req.query.page)) {
                 return badRequest(req, res);
             }
@@ -45,7 +45,7 @@ export const punishments = (server: ApiServer) =>
 
         const data = await query
             .skip((page - 1) * 100)
-            .limit(100)
+            .take(100)
             .getMany();
 
         return res.json(data);

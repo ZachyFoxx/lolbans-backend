@@ -95,7 +95,7 @@ const computeStatistics = async (conn: Connection): Promise<Statistics> => {
     const banArbiters: { [x: string]: Arbiter } = {};
 
     // Kicks
-    let TotalKicks: number;
+    let TotalKicks = 0;
     const kickArbiters: { [x: string]: Arbiter } = {};
 
     // Mutes
@@ -126,28 +126,28 @@ const computeStatistics = async (conn: Connection): Promise<Statistics> => {
                     ActiveBans += 1;
                 }
                 // Arbiters
-                if (!banArbiters[v.UUID]) {
-                    banArbiters[v.UUID] = {
+                if (!banArbiters[v.ArbiterUUID]) {
+                    banArbiters[v.ArbiterUUID] = {
                         Amount: 0,
                         Name: v.ArbiterName,
                         UUID: v.ArbiterUUID,
                     };
                 }
-                banArbiters[v.UUID].Amount += 1;
+                banArbiters[v.ArbiterUUID].Amount += 1;
             }
 
             // Kicks
             if (v.Type == PunishType.Kick) {
                 TotalKicks += 1;
                 // Arbiters
-                if (!kickArbiters[v.UUID]) {
-                    kickArbiters[v.UUID] = {
+                if (!kickArbiters[v.ArbiterUUID]) {
+                    kickArbiters[v.ArbiterUUID] = {
                         Amount: 0,
                         Name: v.ArbiterName,
                         UUID: v.ArbiterUUID,
                     };
                 }
-                kickArbiters[v.UUID].Amount += 1;
+                kickArbiters[v.ArbiterUUID].Amount += 1;
             }
 
             // Mutes
@@ -158,14 +158,14 @@ const computeStatistics = async (conn: Connection): Promise<Statistics> => {
                     ActiveMutes += 1;
                 }
                 // Arbiters
-                if (!muteArbiters[v.UUID]) {
-                    muteArbiters[v.UUID] = {
+                if (!muteArbiters[v.ArbiterUUID]) {
+                    muteArbiters[v.ArbiterUUID] = {
                         Amount: 0,
                         Name: v.ArbiterName,
                         UUID: v.ArbiterUUID,
                     };
                 }
-                muteArbiters[v.UUID].Amount += 1;
+                muteArbiters[v.ArbiterUUID].Amount += 1;
             }
 
             // Warns
@@ -176,14 +176,14 @@ const computeStatistics = async (conn: Connection): Promise<Statistics> => {
                     ActiveWarns += 1;
                 }
                 // Arbiters
-                if (!warnArbiters[v.UUID]) {
-                    warnArbiters[v.UUID] = {
+                if (!warnArbiters[v.ArbiterUUID]) {
+                    warnArbiters[v.ArbiterUUID] = {
                         Amount: 0,
                         Name: v.ArbiterName,
                         UUID: v.ArbiterUUID,
                     };
                 }
-                warnArbiters[v.UUID].Amount += 1;
+                warnArbiters[v.ArbiterUUID].Amount += 1;
             }
         });
     }
