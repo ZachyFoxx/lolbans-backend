@@ -17,5 +17,5 @@ export const registerRoutes = (server: ApiServer) => {
     app.get("/users/:uuid", users(server));
 
     app.get("/statistics", statistics(server));
-    app.get("/statistics/timed", statisticsTimed(server));
+    app.get("/statistics/TimedTotalStats", statisticsTimed(server));
 };

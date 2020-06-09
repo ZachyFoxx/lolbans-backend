@@ -14,7 +14,7 @@ export const punishments = (server: ApiServer) =>
     Router().get("/", async (req: Request, res: Response) => {
         const repo = server.connection.getRepository(Punishment);
 
-        let page = 0;
+        let page = 1;
 
         if (!isUndefined(req.query.page)) {
             if (!isPositiveInteger(req.query.page)) {
@@ -25,7 +25,7 @@ export const punishments = (server: ApiServer) =>
 
         let type: PunishType | undefined;
 
-        if (req.query.type) {
+        if (!isUndefined(req.query.type)) {
             if (
                 !isPositiveInteger(req.query.type) ||
                 Number(req.query.type) < 0
@@ -33,6 +33,18 @@ export const punishments = (server: ApiServer) =>
                 return badRequest(req, res);
             }
             type = Number(req.query.type);
+        }
+
+        let limit: number | undefined;
+
+        if (!isUndefined(req.query.limit)) {
+            if (
+                !isPositiveInteger(req.query.limit) ||
+                Number(req.query.limit) < 0
+            ) {
+                return badRequest(req, res);
+            }
+            limit = Number(req.query.limit);
         }
 
         const query = repo
@@ -45,7 +57,7 @@ export const punishments = (server: ApiServer) =>
 
         const data = await query
             .skip((page - 1) * 100)
-            .take(100)
+            .take(limit || 100)
             .getMany();
 
         return res.json(data);
