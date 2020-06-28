@@ -1,18 +1,14 @@
-import { Request, Response } from "express";
 import { Equal } from "typeorm";
 
-import { ApiServer } from "../ApiServer";
-import { Punishment } from "../entities/Punishment";
-import { badRequest } from "../errors";
+import { Punishment } from "../../../entities/Punishment";
+import { badRequest } from "../../../errors";
+import { RH } from "../../types";
 
 /**
  * Route for fetching punishment details by id.
  * @param server
  */
-export const punishDetails = (server: ApiServer) => async (
-    req: Request,
-    res: Response
-) => {
+export const details: RH = (server) => async (req, res) => {
     const id = req.params.id;
 
     if (!id) {
