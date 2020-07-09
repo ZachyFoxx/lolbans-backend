@@ -1,18 +1,15 @@
 import { Request, Response } from "express";
 import { Equal } from "typeorm";
 
-import { ApiServer } from "../ApiServer";
-import { User } from "../entities/User";
-import { badRequest } from "../errors";
+import { User } from "../../entities/User";
+import { badRequest } from "../../errors";
+import { RH } from "../types";
 
 /**
  * Route for fetching user details by id.
  * @param server
  */
-export const users = (server: ApiServer) => async (
-    req: Request,
-    res: Response
-) => {
+export const users: RH = (server) => async (req, res) => {
     const uuid = req.params.uuid;
 
     if (!uuid) {

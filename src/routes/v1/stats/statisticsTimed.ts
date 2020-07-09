@@ -1,11 +1,10 @@
-import { Request, Response } from "express";
 import * as Moment from "moment";
 import { extendMoment } from "moment-range";
 import { Equal, LessThanOrEqual } from "typeorm";
 
-import { ApiServer } from "../ApiServer";
-import { Punishment, PunishType } from "../entities/Punishment";
-import { badRequest } from "../errors";
+import { Punishment, PunishType } from "../../../entities/Punishment";
+import { badRequest } from "../../../errors";
+import { RH } from "../../types";
 
 const moment = extendMoment(Moment);
 
@@ -13,10 +12,7 @@ const moment = extendMoment(Moment);
  * Deals with graphed statistics.
  * @param server
  */
-export const statisticsTimed = (server: ApiServer) => async (
-    req: Request,
-    res: Response
-) => {
+export const statisticsTimed: RH = (server) => async (req, res) => {
     const start = req.query.start
         ? moment.default.unix(
               (isNaN(Number(req.query.start))

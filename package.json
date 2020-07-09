@@ -1,6 +1,6 @@
 {
-    "name": "eslint-config",
-    "version": "0.0.0",
+    "name": "lolbans-api",
+    "version": "0.1.0",
     "license": "MIT",
     "scripts": {
         "start": "ts-node src",
@@ -34,7 +34,6 @@
         "moment": "^2.26.0",
         "moment-range": "^4.0.2",
         "morgan": "^1.10.0",
-        "mysql": "^2.18.1",
         "mysql2": "^2.1.0",
         "reflect-metadata": "^0.1.13",
         "typeorm": "^0.2.25",
