@@ -1,12 +1,11 @@
-import "reflect-metadata";
-
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-export interface RegexWaveData {
+// No, i'm not doing what you think I am, ESLint grrr
+// eslint-disable-next-line @typescript-eslint/interface-name-prefix
+interface IPBanData {
     id: number;
 
-    Regex: string;
-
+    IPAddress: string;
     Reason?: string;
 
     ArbiterName: string;
@@ -23,21 +22,21 @@ export interface RegexWaveData {
     Expiry?: Date;
 }
 
-@Entity({ name: "RegexWaves" })
-export class RegexWave implements RegexWaveData {
+@Entity({ name: "IPBans" })
+export class IPBan implements IPBanData {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
-    @Column()
-    Regex: string;
-
-    @Column({ type: "text" })
+    // IP Length is not consistent ;w;
+    @Column({ length: 49 })
+    IPAddress!: string;
+    @Column({ type: "text", nullable: true })
     Reason?: string;
 
     @Column({ length: 17 })
-    ArbiterName: string;
+    ArbiterName!: string;
     @Column({ length: 36 })
-    ArbiterUUID: string;
+    ArbiterUUID!: string;
 
     @Column({ type: "text", nullable: true })
     AppealReason?: string;
@@ -48,12 +47,12 @@ export class RegexWave implements RegexWaveData {
     @Column({ type: "timestamp", nullable: true })
     AppealTime?: Date;
     @Column("bool", { default: false })
-    Appealed: boolean;
+    Appealed!: boolean;
 
     @Column({ length: 20 })
-    PunishID: string;
+    PunishID!: string;
     @Column({ type: "timestamp" })
-    TimeAdded: Date;
+    TimeAdded!: Date;
     @Column({ type: "timestamp", nullable: true })
     Expiry?: Date;
 }

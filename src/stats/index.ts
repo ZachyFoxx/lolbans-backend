@@ -1,9 +1,9 @@
 import { Connection } from "typeorm";
 import { isUndefined } from "util";
 
-import { Punishment, PunishType } from "../entities/Punishment";
-import { Report } from "../entities/Report";
-import { User } from "../entities/User";
+import { Punishment, PunishType } from "../entities/servers/Punishment";
+import { Report } from "../entities/servers/Report";
+import { User } from "../entities/servers/User";
 
 interface Arbiter {
     UUID: string;

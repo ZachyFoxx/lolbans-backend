@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { Equal } from "typeorm";
 
-import { ApiServer } from "../ApiServer";
-import { Punishment } from "../entities/Punishment";
-import { badRequest } from "../errors";
+import { ApiServer } from "../../ApiServer";
+import { Punishment } from "../../entities/servers/Punishment";
+import { badRequest } from "../../errors";
 
 /**
  * Route for fetching punishment details by id.

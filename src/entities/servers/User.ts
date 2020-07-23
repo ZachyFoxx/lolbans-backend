@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 export interface UserData {
@@ -23,24 +21,24 @@ export interface UserData {
 @Entity({ name: "Users" })
 export class User implements UserData {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column({ length: 36 })
     UUID: string;
     @Column({ length: 17 })
-    PlayerName: string;
+    PlayerName!: string;
     @Column({ length: 48 })
-    IPAddress: string;
+    IPAddress!: string;
 
     @Column({ length: 64 })
-    Country: string;
+    Country!: string;
     @Column({ length: 3 })
-    CountryCode: string;
+    CountryCode!: string;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
-    FirstLogin: Date;
+    FirstLogin!: Date;
     @Column({ type: "timestamp", default: new Date(0) })
-    LastLogin: Date;
+    LastLogin!: Date;
 
     @Column({ nullable: true })
     Punishments?: number;

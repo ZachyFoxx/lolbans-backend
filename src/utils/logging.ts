@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import { isUndefined } from "lodash";
 import { Logger } from "typeorm";
 import { LoggerOptions } from "typeorm/logger/LoggerOptions";
 import { PlatformTools } from "typeorm/platform/PlatformTools";
@@ -32,10 +33,9 @@ export class QueryLogger implements Logger {
     private logger = createLogger("msql");
 
     constructor(private options?: LoggerOptions) {
-        if (
-            process.env.TYPEORM_LOGGING != "false" &&
-            process.env.TYPEORM_LOGGING
-        ) {
+        if (isUndefined(process.env.TYPEORM_LOGGING)) {
+            this.logger.level = process.env.API_LOGLEVEL || "info";
+        } else if (process.env.TYPEORM_LOGGING != "false") {
             this.logger.level = "debug";
         }
     }

@@ -21,3 +21,7 @@ export const badRequest = (req: Request, res: Response) =>
 // 500
 export const serverError = (req: Request, res: Response) =>
     sendError(res, 500, 3, "Error: Server-side Error");
+
+// 429
+export const ratelimited = (req: Request, res: Response) =>
+    sendError(res, 429, 4, "Error: Too Many Requests");

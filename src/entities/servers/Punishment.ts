@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 export enum PunishType {
@@ -37,31 +35,31 @@ export interface PunishmentData {
 @Entity({ name: "Punishments" })
 export class Punishment implements PunishmentData {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column({ length: 36 })
-    UUID: string;
+    UUID!: string;
     @Column({ length: 17 })
-    PlayerName: string;
+    PlayerName!: string;
     @Column({ length: 48 })
-    IPAddress: string;
+    IPAddress!: string;
     @Column({ type: "text" })
     Reason?: string;
 
     @Column({ length: 20 })
-    PunishID: string;
+    PunishID!: string;
     @Column()
-    Type: PunishType;
+    Type!: PunishType;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
-    TimePunished: Date;
+    TimePunished!: Date;
     @Column({ type: "timestamp", nullable: true })
     Expiry?: Date;
 
     @Column({ length: 17 })
-    ArbiterName: string;
+    ArbiterName!: string;
     @Column({ length: 36 })
-    ArbiterUUID: string;
+    ArbiterUUID!: string;
 
     @Column({ type: "text", nullable: true })
     AppealReason?: string;
@@ -72,8 +70,8 @@ export class Punishment implements PunishmentData {
     @Column({ type: "timestamp", nullable: true })
     AppealTime?: Date;
     @Column("bool", { default: false })
-    Appealed: boolean;
+    Appealed!: boolean;
 
     @Column("bool", { default: false })
-    WarningACK: boolean;
+    WarningACK!: boolean;
 }

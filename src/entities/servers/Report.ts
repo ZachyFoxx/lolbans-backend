@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 interface ReportData {
@@ -27,20 +25,20 @@ interface ReportData {
 @Entity({ name: "Reports" })
 export class Report implements ReportData {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column({ length: 36 })
-    PlaintiffUUID: string;
+    PlaintiffUUID!: string;
     @Column({ length: 17 })
-    PlaintiffName: string;
+    PlaintiffName!: string;
 
     @Column({ length: 36 })
-    DefendantUUID: string;
+    DefendantUUID!: string;
     @Column({ length: 17 })
-    DefendantName: string;
+    DefendantName!: string;
 
     @Column({ type: "text" })
-    Reason: string;
+    Reason!: string;
 
     @Column({ length: 36, nullable: true })
     JudgeUUID?: string;
@@ -48,14 +46,14 @@ export class Report implements ReportData {
     JudgeName?: string;
 
     @Column({ length: 32 })
-    Type: string;
+    Type!: string;
     @Column({ type: "text", nullable: true })
     CloseReason?: string;
     @Column("bool", { default: false })
-    Closed: boolean;
+    Closed!: boolean;
 
     @Column({ type: "timestamp" })
-    TimeAdded: Date;
+    TimeAdded!: Date;
     @Column({ length: 20 })
-    PunishID: string;
+    PunishID!: string;
 }

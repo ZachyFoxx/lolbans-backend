@@ -1,5 +1,7 @@
 # Example Environment Setup
 
+NODE_ENV=development
+
 API_PORT=3000
 API_LOGLEVEL="info"
 # How long the statistics cache should last.
@@ -18,4 +20,3 @@ TYPEORM_PORT=3306
 TYPEORM_SYNCHRONIZE=true
 
 TYPEORM_LOGGING=true
-TYPEORM_ENTITIES=src/entities/*.ts

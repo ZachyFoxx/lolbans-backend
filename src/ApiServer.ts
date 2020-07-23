@@ -18,8 +18,8 @@ export class ApiServer {
     readonly logger = createLogger("lolbans");
     readonly app = express();
 
-    http: Server;
-    connection: Connection;
+    http!: Server;
+    connection!: Connection;
 
     private start = Date.now();
 
@@ -45,7 +45,7 @@ export class ApiServer {
     /**
      * Set up sever middleware and routes.
      */
-    setupApp() {
+    protected setupApp() {
         this.logger.debug("Setting up middleware...");
         this.app
             .use(cors())
@@ -71,7 +71,7 @@ export class ApiServer {
     /**
      * Set up HTTP server - if manual SSL needs to be done, do it here.
      */
-    setupHttpServer() {
+    protected setupHttpServer() {
         this.http = createServer(this.app)
             .on("listening", () =>
                 this.logger.info(`Listening on port ${API_PORT}`)
@@ -82,13 +82,17 @@ export class ApiServer {
     /**
      * Connect to MySQL.
      */
-    async setupDatabase() {
+    protected async setupDatabase() {
         this.logger.debug("Connecting to database...");
         try {
             this.connection = await getConnectionOptions().then((opts) => {
                 return createConnection({
                     ...opts,
                     logger: new QueryLogger("all"),
+                    entities: [
+                        `${__dirname}/entities/*.js`,
+                        `${__dirname}/entities/*.ts`,
+                    ],
                 });
             });
 

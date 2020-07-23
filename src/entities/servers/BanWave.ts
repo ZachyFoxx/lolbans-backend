@@ -1,5 +1,3 @@
-import "reflect-metadata";
-
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 export interface BanWaveData {
@@ -22,27 +20,27 @@ export interface BanWaveData {
 @Entity({ name: "BanWaves" })
 export class BanWave implements BanWaveData {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column({ length: 36 })
-    UUID: string;
+    UUID!: string;
     @Column({ length: 17 })
-    PlayerName: string;
+    PlayerName!: string;
     @Column({ length: 48 })
-    IPAddress: string;
+    IPAddress!: string;
 
     @Column({ type: "text", nullable: true })
     Reason?: string;
 
     @Column({ length: 17 })
-    ArbiterName: string;
+    ArbiterName!: string;
     @Column({ length: 36 })
-    ArbiterUUID: string;
+    ArbiterUUID!: string;
 
     @Column({ length: 20 })
-    PunishID: string;
+    PunishID!: string;
     @Column({ type: "timestamp" })
-    TimePunished: Date;
+    TimePunished!: Date;
     @Column({ type: "timestamp", nullable: true })
     Expiry?: Date;
 }
